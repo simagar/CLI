@@ -1,15 +1,13 @@
 {
-  "name": "simagarcli",
-  "version": "1.0.3",
+  "name": "simagar-cli",
+  "version": "1.0.5",
   "description": "Elegant CLI Builder",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
+    ".": "./dist/index.mjs",
+    "./cli": "./bin/simagar.mjs"
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
@@ -17,9 +15,10 @@
     "dist"
   ],
   "bin": {
-    "simagar": "node ./dist/index.mjs"
+    "simagar": "./bin/simagar.mjs"
   },
   "scripts": {
+    "simagar": "node ./dist/index.mjs",
     "build": "unbuild",
     "dev": "vitest dev",
     "play": "jiti ./cli.ts"
