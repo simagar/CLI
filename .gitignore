@@ -1,0 +1,12 @@
+node_modules
+node_modules/*
+coverage
+dist
+types
+.vscode
+.idea
+.DS_Store
+.eslintcache
+*.log*
+*.env*
+composables
