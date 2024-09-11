@@ -21,42 +21,42 @@ const moduleTemplates: IModuleTemplate = {
         devDependencies: []
     },
     utils: {
-        url: 'github.com:simagar/utils',
+        url: 'github:simagar/utils',
         dependencies: [],
         devDependencies: []
     },
     classAPIProvider: {
-        url: 'github.com:simagar/classAPIProvider',
+        url: 'github:simagar/classAPIProvider',
         dependencies: ['axios'],
         devDependencies: []
     },
     repositoryAPIProvider: {
-        url: 'github.com:simagar/repositoryAPIProvider',
+        url: 'github:simagar/repositoryAPIProvider',
         dependencies: ['axios'],
         devDependencies: []
     },
     formValidator: {
-        url: 'github.com:simagar/formValidator',
+        url: 'github:simagar/formValidator',
         dependencies: ['vee-validate', 'yup'],
         devDependencies: []
     },
     utilityComponents: {
-        url: 'github.com:simagar/utilityComponents',
+        url: 'github:simagar/utilityComponents',
         dependencies: ['vee-validate', 'yup'],
         devDependencies: []
     },
     swiperWrapper: {
-        url: 'github.com:simagar/swiperWrapper',
+        url: 'github:simagar/swiperWrapper',
         dependencies: ['nuxt-swiper'],
         devDependencies: []
     },
     timeUtils: {
-        url: 'github.com:simagar/timeUtils',
+        url: 'github:simagar/timeUtils',
         dependencies: [],
         devDependencies: []
     },
     pwa: {
-        url: 'github.com:simagar/timeUtils',
+        url: 'github:simagar/timeUtils',
         dependencies: ['@vite-pwa/nuxt'],
         devDependencies: []
     },
