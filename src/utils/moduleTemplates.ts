@@ -13,7 +13,7 @@ const moduleTemplates: IModuleTemplate = {
     auth: {
         url: 'github:simagar/auth',
         dependencies: ['@pinia-plugin-persistedstate/nuxt', 'pinia', '@pinia/nuxt'],
-        devDependencies: ['test']
+        devDependencies: []
     },
     spinner: {
         url: 'github:simagar/spinner',
@@ -56,7 +56,7 @@ const moduleTemplates: IModuleTemplate = {
         devDependencies: []
     },
     pwa: {
-        url: 'github:simagar/timeUtils',
+        url: 'github:simagar/pwa',
         dependencies: ['@vite-pwa/nuxt'],
         devDependencies: []
     },
