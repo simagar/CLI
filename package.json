@@ -24,6 +24,7 @@
     "play": "jiti ./cli.ts"
   },
   "dependencies": {
+    "@nuxt/kit": "^3.13.1",
     "c12": "^1.11.2",
     "consola": "^3.2.3",
     "giget": "^1.2.3",
