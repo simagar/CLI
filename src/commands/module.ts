@@ -1,27 +1,34 @@
-import { defineCommand } from "../index";
-import { getGigetTemplate } from "../utils/giget";
+import {consola} from 'consola'
+import {defineCommand} from "../index";
+import {getTemplateWithGiget} from "../utils/giget";
+import {modulesList} from "../models/modulesList";
 
 export default defineCommand({
-  meta: {
-    name: "addModule",
-    description: "global utility management for frontend",
-  },
-  args: {
-    template: {
-      type: "positional",
-      description: "module templates",
-      default: "addModule",
-      required: false,
+    meta: {
+        name: "addModule",
+        description: "global utility management for frontend",
     },
-  },
-  async run(ctx) {
-    try {
-      await getGigetTemplate(ctx.args.template);
-      // await createFile({
-      //     directoryPath: `${process.cwd()}/composables`,
-      //     fileName: `use${ctx.args.template.charAt(0).toUpperCase() + ctx.args.template.slice(1)}.ts`,
-      //     fileContent:!ctx.args.external ? await getContent(`${process.cwd()}/templates/${ctx.args.template}.ts`) : getGigetTemplate(ctx.args.external)
-      // })
-    } catch (e) {}
-  },
+    args: {
+        template: {
+            type: "positional",
+            description: "module templates",
+            default: "addModule",
+            required: false,
+        },
+    },
+    async run(ctx) {
+        try {
+            const selectedModuleName = await consola.prompt(
+                "Select your desired module to add",
+                {
+                    type: "select",
+                    options: modulesList,
+                }
+            );
+            // @ts-expect-error-next-line
+            await getTemplateWithGiget(selectedModuleName);
+        } catch (e) {
+            consola.error(e)
+        }
+    },
 });

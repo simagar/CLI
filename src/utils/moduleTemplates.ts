@@ -1,16 +1,19 @@
-export interface IModuleTemplate {
-    [key: string]: {
-        url: string;
-        dependencies?: string[];
-        devDependencies?: string[];
-    }
+export interface IModule {
+    url: string;
+    dependencies: string[] | [];
+    devDependencies: string[] | [];
 }
+
+export interface IModuleTemplate {
+    [key: string]: IModule
+}
+
 
 const moduleTemplates: IModuleTemplate = {
     auth: {
         url: 'github:simagar/auth',
         dependencies: ['@pinia-plugin-persistedstate/nuxt', 'pinia', '@pinia/nuxt'],
-        devDependencies: []
+        devDependencies: ['test']
     },
     spinner: {
         url: 'github:simagar/spinner',
@@ -49,7 +52,14 @@ const moduleTemplates: IModuleTemplate = {
     },
     timeUtils: {
         url: 'github.com:simagar/timeUtils',
-    }
+        dependencies: [],
+        devDependencies: []
+    },
+    pwa: {
+        url: 'github.com:simagar/timeUtils',
+        dependencies: ['@vite-pwa/nuxt'],
+        devDependencies: []
+    },
 }
 
 export {

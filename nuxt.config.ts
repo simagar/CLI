@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // @ts-ignore
 export default defineNuxtConfig({
-  modules: ["nuxt-swiper", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
+  modules: ["nuxt-swiper", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt", '@vite-pwa/nuxt'],
   app: {
     head: {
       title: 'Sky Coach',

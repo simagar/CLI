@@ -28,7 +28,8 @@
     "c12": "^1.11.2",
     "consola": "^3.2.3",
     "giget": "^1.2.3",
-    "pathe": "^1.1.2"
+    "pathe": "^1.1.2",
+    "pinia": "^2.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
