@@ -14,21 +14,29 @@ let selectedPackageManager: IPackageManager = {};
 let dependenciesCommand: IInstallPackagesCommandResult | null = null;
 
 async function getTemplateWithGiget(template: string) {
+  // Get Package Manager Name from user input
   const selectedPackageManagerName =
     await getUserCurrentPackageManagerFromPrompt();
   // @ts-ignore
   selectedPackageManager = packageManagers[selectedPackageManagerName];
+
+  // Load the config of module that user selected
   const selectedModuleTemplateConfig = moduleTemplates[template] as IModule;
   try {
+    // Save current gitignore of user project
     const originalGitIgnore = await getOriginalGitignoreContent();
 
+    // Download selected module from github
     await downloadTemplate(selectedModuleTemplateConfig.url, {
       cwd: process.cwd(),
       dir: "./",
       force: true,
     });
 
-    await restoreGitignoreContent(originalGitIgnore);
+    // If there was a gitignore before downloading, rewrite it back
+    if (originalGitIgnore) {
+      await restoreGitignoreContent(originalGitIgnore);
+    }
 
     dependenciesCommand = await checkAndInstallPackages(
       selectedModuleTemplateConfig

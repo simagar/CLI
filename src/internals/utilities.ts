@@ -13,11 +13,12 @@ export async function getConfig(
   configFile: string = "nuxt.config.ts",
   configUpdateCallback: (config: any) => any
 ) {
-  const response = await updateConfig({
+  await updateConfig({
     cwd: process.cwd(),
     configFile,
     onUpdate: (config) => {
       // You can update the config contents just like an object
+
       config = configUpdateCallback(config);
     },
   });
@@ -36,11 +37,23 @@ let devDependenciesCommand = "";
 export async function checkAndInstallPackages(
   configs: IModule
 ): Promise<IInstallPackagesCommandResult> {
-  if (configs?.dependencies.length > 0) {
+  if (configs?.dependencies.length) {
     await installPackages(configs.dependencies, false);
   }
-  if (configs.devDependencies.length > 0) {
+  if (configs.devDependencies.length) {
     await installPackages(configs.devDependencies, true);
+  }
+  if (configs.nuxtModules && configs.nuxtModules.length) {
+    await getConfig("nuxt.config.ts", (nuxtConfig) => {
+      if (nuxtConfig.modules) {
+        for (let i = 0; i < configs.nuxtModules.length; i++) {
+          if (!nuxtConfig.modules.includes(configs.nuxtModules[i]))
+            nuxtConfig.modules.push(configs.nuxtModules[i]);
+        }
+      } else {
+        nuxtConfig.modules = [...configs.nuxtModules];
+      }
+    });
   }
 
   return {
