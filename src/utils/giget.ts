@@ -8,36 +8,54 @@ import {
 import { IPackageManager, packageManagers } from "../models/packageManagers";
 import { downloadTemplate } from "giget";
 import { IModule, moduleTemplates } from "./moduleTemplates";
+import { getContent, createFile } from "./fs";
 
 let selectedPackageManager: IPackageManager = {};
 let dependenciesCommand: IInstallPackagesCommandResult | null = null;
 
 async function getTemplateWithGiget(template: string) {
-  console.log("done");
-
   const selectedPackageManagerName =
     await getUserCurrentPackageManagerFromPrompt();
   // @ts-ignore
   selectedPackageManager = packageManagers[selectedPackageManagerName];
   const selectedModuleTemplateConfig = moduleTemplates[template] as IModule;
   try {
+    const originalGitIgnore = await getOriginalGitignoreContent();
+
     await downloadTemplate(selectedModuleTemplateConfig.url, {
       cwd: process.cwd(),
       dir: "./",
       force: true,
     });
+
+    await restoreGitignoreContent(originalGitIgnore);
+
     dependenciesCommand = await checkAndInstallPackages(
       selectedModuleTemplateConfig
     );
     if (dependenciesCommand.dep || dependenciesCommand.devDep) {
-      await runCommand();
+      await runInstallCommand();
     }
   } catch (e) {
     consola.error(e);
   }
 }
 
-async function runCommand() {
+async function getOriginalGitignoreContent() {
+  return await getContent(`${process.cwd()}/.gitignore`);
+}
+
+async function restoreGitignoreContent(
+  content: string | NodeJS.ArrayBufferView
+) {
+  await createFile({
+    directoryPath: process.cwd(),
+    fileContent: content,
+    fileName: ".gitignore",
+  });
+}
+
+async function runInstallCommand() {
   await exec(
     `${selectedPackageManager.command} ${dependenciesCommand?.dep} & ${selectedPackageManager.command} ${selectedPackageManager.dev} ${dependenciesCommand?.devDep}`,
     (error, stdout, stderr) => {
