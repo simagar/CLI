@@ -1,4 +1,4 @@
-import fs from "src/utils/fs";
+import fs from "fs";
 
 interface IOpts {
   directoryPath: string;
