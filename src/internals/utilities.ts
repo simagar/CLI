@@ -62,10 +62,11 @@ export async function installPackages(
   const projectPackages = dev
     ? config.devDependencies
       ? config.devDependencies
-      : []
+      : {}
     : config.dependencies
       ? config.dependencies
-      : [];
+      : {};
+
   packageList.forEach((packageName: string) => {
     if (projectPackages[packageName]) {
       // package exists
