@@ -41,7 +41,7 @@ async function getTemplateWithGiget(template: string) {
       await restoreContent(originalGitIgnore, ".gitignore");
     }
     if (originalReadme) {
-      await restoreContent(originalReadme, ".readme.MD");
+      await restoreContent(originalReadme, ".readme.md");
     }
 
     dependenciesCommand = await checkAndInstallPackages(
