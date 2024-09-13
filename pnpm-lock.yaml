@@ -48,6 +48,9 @@ importers:
       jiti:
         specifier: ^1.21.0
         version: 1.21.6
+      magicast:
+        specifier: ^0.3.5
+        version: 0.3.5
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
