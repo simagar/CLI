@@ -27,7 +27,7 @@ async function getTemplateWithGiget(template: string) {
   try {
     // Save current gitignore of user project
     const originalGitIgnore = await getOriginalContent(".gitignore");
-    const originalReadme = await getOriginalContent("readme.MD");
+    const originalReadme = await getOriginalContent("readme.md");
 
     // Download selected module from github
     await downloadTemplate(selectedModuleTemplateConfig.url, {

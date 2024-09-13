@@ -30,7 +30,8 @@ async function getContent(filePath: string, encoding?: string) {
         // @ts-ignore
         return fs.readFileSync(filePath, {encoding});
     } else {
-        throw "no such file !";
+        // TODO: Handle returning an info log instead of error
+        // throw "no such file !";
     }
 }
 
