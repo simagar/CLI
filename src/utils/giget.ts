@@ -26,7 +26,8 @@ async function getTemplateWithGiget(template: string) {
     const selectedModuleTemplateConfig = moduleTemplates[template] as IModule;
     try {
         // Save current gitignore of user project
-        const originalGitIgnore = await getOriginalGitignoreContent();
+        const originalGitIgnore = await getOriginalContent('.gitignore');
+        const originalReadme = await getOriginalContent('readme.MD');
 
         // Download selected module from github
         await downloadTemplate(selectedModuleTemplateConfig.url, {
@@ -37,7 +38,10 @@ async function getTemplateWithGiget(template: string) {
 
         // If there was a gitignore before downloading, rewrite it back
         if (originalGitIgnore) {
-            await restoreGitignoreContent(originalGitIgnore);
+            await restoreContent(originalGitIgnore, '.gitignore');
+        }
+        if (originalReadme) {
+            await restoreContent(originalReadme, '.readme.MD');
         }
 
         dependenciesCommand = await checkAndInstallPackages(
@@ -70,17 +74,19 @@ async function addPWAToNuxt() {
     })
 }
 
-async function getOriginalGitignoreContent() {
-    return await getContent(`${process.cwd()}/.gitignore`);
+async function getOriginalContent(fileName: string) {
+    return await getContent(`${process.cwd()}/${fileName}`);
 }
 
-async function restoreGitignoreContent(
-    content: string | NodeJS.ArrayBufferView
+
+async function restoreContent(
+    content: string | NodeJS.ArrayBufferView,
+    fileName: string
 ) {
     await createFile({
         directoryPath: process.cwd(),
         fileContent: content,
-        fileName: ".gitignore",
+        fileName,
     });
 }
 
