@@ -69,6 +69,7 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: ["@vite-pwa/nuxt"],
     devDependencies: [],
     nuxtModules: ["@vite-pwa/nuxt"],
+
   },
 };
 

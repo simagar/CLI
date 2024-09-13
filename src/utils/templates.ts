@@ -1,4 +1,4 @@
-export const pwaConfig = {
+export let pwaConfig = {
   registerType: "autoUpdate",
   manifest: {
     id: "/",

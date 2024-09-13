@@ -9,10 +9,7 @@ export interface IInstallPackagesCommandResult {
   devDep: string;
 }
 
-export async function getConfig(
-  configFile: string = "nuxt.config.ts",
-  configUpdateCallback: (config: any) => any
-) {
+export async function getConfig(configFile: string = "nuxt.config.ts", configUpdateCallback: (config: any) => any) {
   await updateConfig({
     cwd: process.cwd(),
     configFile,
@@ -51,7 +48,7 @@ export async function checkAndInstallPackages(
             nuxtConfig.modules.push(configs.nuxtModules[i]);
         }
       } else {
-        nuxtConfig.modules = [...configs.nuxtModules];
+        nuxtConfig['modules'] = [...configs.nuxtModules];
       }
     });
   }
