@@ -14,7 +14,6 @@ export const main = defineCommand({
     consola.info("Cleanup");
   },
   subCommands: {
-    // TODO: Nuxt modules are getting overwrited
     addModule: () => import("./src/commands/module").then((r) => r.default),
   },
 });

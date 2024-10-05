@@ -18,7 +18,7 @@ export const packageManagers: IPackageManager = {
   },
   yarn: {
     command: "yarn add",
-    dev: "-D",
+    dev: "--save-dev",
   },
   pnpm: {
     command: "pnpm i",
