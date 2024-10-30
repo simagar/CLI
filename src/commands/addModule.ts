@@ -31,7 +31,7 @@ export default defineCommand({
         }
       );
       // @ts-ignore
-      await getTemplateWithGiget(selectedModuleName);
+      await getTemplateWithGiget(cwd, selectedModuleName);
     } catch (e) {
       consola.error(e);
     }
