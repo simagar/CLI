@@ -1,5 +1,5 @@
 export const sharedArgs = {
-  cwd: {
+  dir: {
     type: "string",
     description: "Current working directory",
   },

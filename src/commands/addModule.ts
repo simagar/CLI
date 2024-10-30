@@ -20,7 +20,7 @@ export default defineCommand({
     },
   },
   async run(ctx) {
-    const cwd = resolve(ctx.args.cwd || ".");
+    const cwd = resolve(ctx.args.dir || ".");
 
     try {
       const selectedModuleName = await consola.prompt(
