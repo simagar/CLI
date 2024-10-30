@@ -9,9 +9,13 @@ export interface IInstallPackagesCommandResult {
   devDep: string;
 }
 
-export async function getConfig(configFile: string = "nuxt.config.ts", configUpdateCallback: (config: any) => any) {
+export async function getConfig(
+  cwd: string,
+  configFile: string = "nuxt.config.ts",
+  configUpdateCallback: (config: any) => any
+) {
   await updateConfig({
-    cwd: process.cwd(),
+    cwd: cwd,
     configFile,
     onUpdate: (config) => {
       // You can update the config contents just like an object
@@ -32,23 +36,24 @@ let dependenciesCommand = "";
 let devDependenciesCommand = "";
 
 export async function checkAndInstallPackages(
+  cwd: string,
   configs: IModule
 ): Promise<IInstallPackagesCommandResult> {
   if (configs?.dependencies.length) {
-    await installPackages(configs.dependencies, false);
+    await installPackages(cwd, configs.dependencies, false);
   }
   if (configs.devDependencies.length) {
-    await installPackages(configs.devDependencies, true);
+    await installPackages(cwd, configs.devDependencies, true);
   }
   if (configs.nuxtModules && configs.nuxtModules.length) {
-    await getConfig("nuxt.config.ts", (nuxtConfig) => {
+    await getConfig(cwd, "nuxt.config.ts", (nuxtConfig) => {
       if (nuxtConfig.modules) {
         for (let i = 0; i < configs.nuxtModules.length; i++) {
           if (!nuxtConfig.modules.includes(configs.nuxtModules[i]))
             nuxtConfig.modules.push(configs.nuxtModules[i]);
         }
       } else {
-        nuxtConfig['modules'] = [...configs.nuxtModules];
+        nuxtConfig["modules"] = [...configs.nuxtModules];
       }
     });
   }
@@ -60,11 +65,12 @@ export async function checkAndInstallPackages(
 }
 
 export async function installPackages(
+  cwd: string,
   packageList: string[],
   dev: boolean
 ): Promise<void> {
   const { config, configFile } = await loadConfig({
-    cwd: process.cwd(),
+    cwd,
     packageJson: true,
     configFile: "package.json",
   });

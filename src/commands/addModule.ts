@@ -2,6 +2,8 @@ import { consola } from "consola";
 import { defineCommand } from "../index";
 import { modulesList } from "../models/modulesList";
 import { getTemplateWithGiget } from "../utils/giget";
+import { sharedArgs } from "./_shared";
+import { resolve } from "pathe";
 
 export default defineCommand({
   meta: {
@@ -9,6 +11,7 @@ export default defineCommand({
     description: "global utility management for frontend",
   },
   args: {
+    ...sharedArgs,
     template: {
       type: "positional",
       description: "module templates",
@@ -17,6 +20,8 @@ export default defineCommand({
     },
   },
   async run(ctx) {
+    const cwd = resolve(ctx.args.cwd || ".");
+
     try {
       const selectedModuleName = await consola.prompt(
         "Select your desired module to add",

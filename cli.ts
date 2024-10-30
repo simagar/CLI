@@ -1,20 +1,15 @@
 import { defineCommand, runMain } from "./src";
 import consola from "consola";
+import simagarPackage from "./package.json" assert { type: "json" };
 
 export const main = defineCommand({
   meta: {
-    name: "simagar/cli",
-    version: "1.0.3",
-    description: "Simagar playground CLI",
-  },
-  setup() {
-    consola.info("Setup");
-  },
-  cleanup() {
-    consola.info("Cleanup");
+    name: simagarPackage.name,
+    version: simagarPackage.version,
+    description: simagarPackage.description,
   },
   subCommands: {
-    addModule: () => import("./src/commands/module").then((r) => r.default),
+    addModule: () => import("./src/commands/addModule").then((r) => r.default),
   },
 });
 

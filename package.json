@@ -1,7 +1,7 @@
 {
   "name": "simagar-cli",
   "version": "1.0.24",
-  "description": "Simple CLI tool to share common frontend tools",
+  "description": "Simagar Internal CLI",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",

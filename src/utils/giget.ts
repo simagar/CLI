@@ -15,7 +15,7 @@ import { downloadTemplate } from "giget";
 let selectedPackageManager: IPackageManager = {};
 let dependenciesCommand: IInstallPackagesCommandResult | null = null;
 
-async function getTemplateWithGiget(template: string) {
+async function getTemplateWithGiget(cwd: string, template: string) {
   // Get Package Manager Name from user input
   const selectedPackageManagerName =
     await getUserCurrentPackageManagerFromPrompt();
@@ -26,39 +26,40 @@ async function getTemplateWithGiget(template: string) {
   const selectedModuleTemplateConfig = moduleTemplates[template] as IModule;
   try {
     // Save current gitignore of user project
-    const originalGitIgnore = await getOriginalContent(".gitignore");
-    const originalReadme = await getOriginalContent("readme.md");
+    const originalGitIgnore = await getOriginalContent(cwd, ".gitignore");
+    const originalReadme = await getOriginalContent(cwd, "readme.md");
 
     // Download selected module from github
     await downloadTemplate(selectedModuleTemplateConfig.url, {
-      cwd: process.cwd(),
+      cwd,
       dir: "./",
       force: true,
     });
 
     // If there was a gitignore before downloading, rewrite it back
     if (originalGitIgnore) {
-      await restoreContent(originalGitIgnore, ".gitignore");
+      await restoreContent(cwd, originalGitIgnore, ".gitignore");
     }
     if (originalReadme) {
-      await restoreContent(originalReadme, "readme.md");
+      await restoreContent(cwd, originalReadme, "readme.md");
     }
 
     dependenciesCommand = await checkAndInstallPackages(
+      cwd,
       selectedModuleTemplateConfig
     );
     if (dependenciesCommand.dep || dependenciesCommand.devDep) {
       await runInstallCommand();
     }
     if (template === "pwa") {
-      await addPWAToNuxt();
+      await addPWAToNuxt(cwd);
     }
   } catch (e) {
     consola.error(e);
   }
 }
 
-async function addPWAToNuxt() {
+async function addPWAToNuxt(cwd: string) {
   const applicationName = await consola.prompt("Enter Your Application Name");
   const themeColor = await consola.prompt("Enter A Primary Color (Exp: #ccc)");
   // @ts-ignore
@@ -69,21 +70,22 @@ async function addPWAToNuxt() {
   pwaConfig.manifest.theme_color = themeColor;
   // @ts-ignore
   pwaConfig.manifest.background_color = themeColor;
-  await getConfig("nuxt.config", (nuxtConfig) => {
+  await getConfig(cwd, "nuxt.config", (nuxtConfig) => {
     nuxtConfig["pwa"] = pwaConfig;
   });
 }
 
-async function getOriginalContent(fileName: string) {
-  return await getContent(`${process.cwd()}/${fileName}`);
+async function getOriginalContent(cwd: string, fileName: string) {
+  return await getContent(`${cwd}/${fileName}`);
 }
 
 async function restoreContent(
+  cwd: string,
   content: string | NodeJS.ArrayBufferView,
   fileName: string
 ) {
   await createFile({
-    directoryPath: process.cwd(),
+    directoryPath: cwd,
     fileContent: content,
     fileName,
   });
