@@ -30,6 +30,11 @@ export default defineCommand({
           options: modulesList,
         }
       );
+
+      if (!selectedModuleName) {
+        consola.warn("No module selected. Exiting.");
+        return consola.error(new Error("No module selected. Exiting."));
+      }
       // @ts-ignore
       await getTemplateWithGiget(cwd, selectedModuleName);
     } catch (e) {
