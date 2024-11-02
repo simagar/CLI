@@ -1,6 +1,6 @@
 import { defineCommand, runMain } from "./src";
-import consola from "consola";
 import simagarPackage from "./package.json" assert { type: "json" };
+
 
 export const main = defineCommand({
   meta: {

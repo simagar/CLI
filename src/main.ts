@@ -1,4 +1,5 @@
 import consola from "consola";
+
 import type { ArgsDef, CommandDef } from "./types";
 import { resolveSubCommand, runCommand } from "./command";
 import { CLIError } from "./_utils";
@@ -11,7 +12,7 @@ export interface RunMainOptions {
 
 export async function runMain<T extends ArgsDef = ArgsDef>(
   cmd: CommandDef<T>,
-  opts: RunMainOptions = {},
+  opts: RunMainOptions = {}
 ) {
   const rawArgs = opts.rawArgs || process.argv.slice(2);
   const showUsage = opts.showUsage || _showUsage;
@@ -43,7 +44,7 @@ export async function runMain<T extends ArgsDef = ArgsDef>(
 }
 
 export function createMain<T extends ArgsDef = ArgsDef>(
-  cmd: CommandDef<T>,
+  cmd: CommandDef<T>
 ): (opts?: RunMainOptions) => Promise<void> {
   return (opts: RunMainOptions = {}) => runMain(cmd, opts);
 }

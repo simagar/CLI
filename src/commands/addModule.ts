@@ -30,10 +30,12 @@ export default defineCommand({
           options: modulesList,
         }
       );
-
       if (!selectedModuleName) {
-        consola.warn("No module selected. Exiting.");
         return consola.error(new Error("No module selected. Exiting."));
+      }
+      if (selectedModuleName.toString() === "Symbol(clack:cancel)") {
+        consola.log("Exiting gracefully...");
+        process.exit(0);
       }
       // @ts-ignore
       await getTemplateWithGiget(cwd, selectedModuleName);
