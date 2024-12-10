@@ -14,7 +14,7 @@ const moduleTemplates: IModuleTemplate = {
     url: "github:simagar/auth",
     dependencies: ["@pinia-plugin-persistedstate/nuxt", "pinia", "@pinia/nuxt"],
     devDependencies: [],
-    nuxtModules: ["@pinia/nuxt", "pinia-plugin-persistedstate/nuxt"],
+    nuxtModules: ["@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
   },
   spinner: {
     url: "github:simagar/spinner",
