@@ -40,6 +40,12 @@ const moduleTemplates: IModuleTemplate = {
     devDependencies: [],
     nuxtModules: [],
   },
+  selectComponent: {
+    url: "github:simagar/vue3-select-component",
+    dependencies: [],
+    devDependencies: ["vue3-select-component"],
+    nuxtModules: [],
+  },
   formValidator: {
     url: "github:simagar/formValidator",
     dependencies: ["vee-validate", "yup"],
@@ -69,7 +75,6 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: ["@vite-pwa/nuxt"],
     devDependencies: [],
     nuxtModules: ["@vite-pwa/nuxt"],
-
   },
 };
 

@@ -22,6 +22,11 @@ export const modulesList = [
     hint: "Vee-Validate with a custom form wrapper and input",
   },
   {
+    label: "Select Component",
+    value: "selectComponent",
+    hint: "vue3-select-component with a custom wrapper for custom UI integration",
+  },
+  {
     label: "Utility Components",
     value: "utilityComponents",
     hint: "Common utility components such as audio recorder and etc...",
