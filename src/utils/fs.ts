@@ -35,6 +35,26 @@ async function getContent(filePath: string, encoding?: string) {
     }
 }
 
+async function copyFile(sourcePath: string, destination: string) {
+
+    try {
+
+        let readStream = fs.createReadStream(sourcePath);
+        let writeStream = fs.createWriteStream(destination)
+
+
+        readStream.on('close', function () {
+            fs.unlink(sourcePath, (error) => {
+                console.error(error)
+            });
+        });
+
+        readStream.pipe(writeStream);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 async function moveFile(sourcePath: string, destination: string) {
     try {
 
@@ -43,9 +63,12 @@ async function moveFile(sourcePath: string, destination: string) {
             await fs.promises.rename(sourcePath, destination)
         }
     } catch (error) {
+        if (error && error.code === 'EXDEV') {
+            await copyFile(sourcePath, destination)
+        }
         console.error(error)
     }
-
 }
+
 
 export {createFile, getContent, moveFile};
