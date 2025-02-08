@@ -76,6 +76,12 @@ const moduleTemplates: IModuleTemplate = {
     devDependencies: [],
     nuxtModules: ["@vite-pwa/nuxt"],
   },
+  leaflet: {
+    url: "github:simagar/leaflet",
+    dependencies: ["leaflet"],
+    devDependencies: [],
+    nuxtModules: [],
+  },
 };
 
 export { moduleTemplates };
