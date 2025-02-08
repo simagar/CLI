@@ -36,7 +36,7 @@ const moduleTemplates: IModuleTemplate = {
   },
   repositoryAPIProvider: {
     url: "github:simagar/repositoryAPIProvider",
-    dependencies: ["axios"],
+    dependencies: [],
     devDependencies: [],
     nuxtModules: [],
   },
