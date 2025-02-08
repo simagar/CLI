@@ -25,7 +25,13 @@ export async function getConfig(
   });
 }
 
+export async function detectPackageManager(
+  cwd: string,
+  configFile: string = "package.json"
+) {}
+
 export async function getUserCurrentPackageManagerFromPrompt() {
+  // HERE
   return await consola.prompt("Select Package Manager", {
     type: "select",
     options: supportedPackageManagerList,
