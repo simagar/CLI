@@ -30,7 +30,7 @@ const moduleTemplates: IModuleTemplate = {
   },
   classAPIProvider: {
     url: "github:simagar/classAPIProvider",
-    dependencies: ["axios"],
+    dependencies: [],
     devDependencies: [],
     nuxtModules: [],
   },
