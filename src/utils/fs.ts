@@ -63,7 +63,7 @@ async function moveFile(sourcePath: string, destination: string) {
             await fs.promises.rename(sourcePath, destination)
         }
     } catch (error) {
-        if (error && error.code === 'EPERM') {
+        if (error) {
             await copyFile(sourcePath, destination)
         }
         console.error(error)
