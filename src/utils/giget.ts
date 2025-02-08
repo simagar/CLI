@@ -8,14 +8,14 @@ import {
 } from "../../src/internals/utilities";
 import {IPackageManager, packageManagers} from "../models/packageManagers";
 import {IModule, moduleTemplates} from "./moduleTemplates";
-import {createFile, getContent} from "./fs";
+import {createFile, getContent, moveFile} from "./fs";
 import {pwaConfig} from "./templates";
 import {downloadTemplate} from "giget";
 
 let selectedPackageManager: IPackageManager = {};
 let dependenciesCommand: IInstallPackagesCommandResult | null = null;
 
-async function getTemplateWithGiget(cwd: string, template: string) {
+async function getTemplateWithGiget(cwd: string, template: string, v4: boolean) {
     // Get Package Manager Name from user input
     const selectedPackageManagerName =
         await getUserCurrentPackageManagerFromPrompt();
@@ -53,6 +53,9 @@ async function getTemplateWithGiget(cwd: string, template: string) {
         }
         if (template === "pwa") {
             await addPWAToNuxt(cwd);
+        }
+        if (v4) {
+            await makeItCompatibleWithNuxtV4()
         }
     } catch (e) {
         consola.error(e);
@@ -104,6 +107,10 @@ async function runInstallCommand() {
             consola.success("stdout", stdout);
         }
     );
+}
+
+async function makeItCompatibleWithNuxtV4() {
+    await moveFile('./components', "./app/components")
 }
 
 export {getTemplateWithGiget};
