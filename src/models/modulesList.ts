@@ -46,4 +46,9 @@ export const modulesList = [
     value: "pwa",
     hint: "Zero-Config PWA module using vite-pwa/nuxt",
   },
+  {
+    label: "leaflet",
+    value: "leaflet",
+    hint: "Zero-Config Location Picker Based On leaflet",
+  },
 ];
