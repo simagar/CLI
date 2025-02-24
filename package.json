@@ -15,7 +15,7 @@
     "dist"
   ],
   "bin": {
-    "simagar": "./bin/simagar.mjs"
+    "simagar": "bin/simagar.mjs"
   },
   "scripts": {
     "simagar": "node ./dist/index.mjs",
