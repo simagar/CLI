@@ -3,6 +3,7 @@ export interface IModule {
   dependencies: string[] | [];
   devDependencies: string[] | [];
   nuxtModules: string[] | [];
+  hasV4?: boolean;
 }
 
 export interface IModuleTemplate {
@@ -33,6 +34,7 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: [],
     devDependencies: [],
     nuxtModules: [],
+    hasV4: true,
   },
   repositoryAPIProvider: {
     url: "github:simagar/repositoryAPIProvider",
