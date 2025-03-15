@@ -8,7 +8,7 @@ import {
 } from "../../src/internals/utilities";
 import { IPackageManager, packageManagers } from "../models/packageManagers";
 import { IModule, moduleTemplates } from "./moduleTemplates";
-import { createFile, getContent, moveFile } from "./fs";
+import { createFile, getContent } from "./fs";
 import { pwaConfig } from "./templates";
 import { downloadTemplate } from "giget";
 
@@ -64,9 +64,6 @@ async function getTemplateWithGiget(
     if (template === "pwa") {
       await addPWAToNuxt(cwd);
     }
-    if (v4) {
-      await makeItCompatibleWithNuxtV4();
-    }
   } catch (e) {
     consola.error(e);
   }
@@ -117,10 +114,6 @@ async function runInstallCommand() {
       consola.success("stdout", stdout);
     }
   );
-}
-
-async function makeItCompatibleWithNuxtV4() {
-  await moveFile("./components", "./app/components");
 }
 
 export { getTemplateWithGiget };

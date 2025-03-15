@@ -52,18 +52,4 @@ async function copyFile(sourcePath: string, destination: string) {
   }
 }
 
-async function moveFile(sourcePath: string, destination: string) {
-  try {
-    const isFileExists = await exists(sourcePath);
-    if (isFileExists) {
-      await fs.promises.rename(sourcePath, destination);
-    }
-  } catch (error) {
-    if (error) {
-      await copyFile(sourcePath, destination);
-    }
-    console.error(error);
-  }
-}
-
-export { createFile, getContent, moveFile };
+export { createFile, getContent };

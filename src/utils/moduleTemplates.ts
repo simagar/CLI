@@ -22,6 +22,7 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: ["pinia", "@pinia/nuxt"],
     devDependencies: [],
     nuxtModules: ["@pinia/nuxt"],
+    hasV4: true,
   },
   utils: {
     url: "github:simagar/utils",
@@ -47,6 +48,7 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: [],
     devDependencies: ["vue3-select-component"],
     nuxtModules: [],
+    hasV4: true,
   },
   formValidator: {
     url: "github:simagar/formValidator",
@@ -65,24 +67,28 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: ["nuxt-swiper"],
     devDependencies: [],
     nuxtModules: ["nuxt-swiper"],
+    hasV4: true,
   },
   timeUtils: {
     url: "github:simagar/timeUtils",
     dependencies: [],
     devDependencies: [],
     nuxtModules: [],
+    hasV4: true,
   },
   pwa: {
     url: "github:simagar/pwa",
     dependencies: ["@vite-pwa/nuxt"],
     devDependencies: [],
     nuxtModules: ["@vite-pwa/nuxt"],
+    hasV4: true,
   },
   leaflet: {
     url: "github:simagar/leaflet",
     dependencies: ["leaflet"],
     devDependencies: [],
     nuxtModules: [],
+    hasV4: true,
   },
 };
 
