@@ -16,6 +16,7 @@ const moduleTemplates: IModuleTemplate = {
     dependencies: ["pinia-plugin-persistedstate", "pinia", "@pinia/nuxt"],
     devDependencies: [],
     nuxtModules: ["@pinia/nuxt", "pinia-plugin-persistedstate/nuxt"],
+    hasV4: true,
   },
   spinner: {
     url: "github:simagar/spinner",
