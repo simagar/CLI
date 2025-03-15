@@ -1,6 +1,6 @@
 {
   "name": "simagar-cli",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "Simagar Internal CLI",
   "license": "MIT",
   "sideEffects": false,
