@@ -47,7 +47,7 @@ const moduleTemplates: IModuleTemplate = {
   selectComponent: {
     url: "github:simagar/vue3-select-component",
     dependencies: [],
-    devDependencies: ["vue3-select-component"],
+    devDependencies: ["vue3-select-component@latest"],
     nuxtModules: [],
     hasV4: true,
   },
