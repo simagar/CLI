@@ -24,7 +24,7 @@ export let pwaConfig = {
         type: "image/png",
       },
       {
-        src: "/pwa/favicon-16x16v2.png",
+        src: "/pwa/favicon-16x16.png",
         sizes: "16x16",
         type: "image/png",
       },
@@ -34,12 +34,12 @@ export let pwaConfig = {
         type: "image/png",
       },
       {
-        src: "/pwa/favicon-32x32v2.png",
+        src: "/pwa/favicon-32x32.png",
         sizes: "32x32",
         type: "image/png",
       },
       {
-        src: "/pwa/favicon2.ico",
+        src: "/pwa/favicon.ico",
         sizes: "16x16",
         type: "image/ico",
       },
